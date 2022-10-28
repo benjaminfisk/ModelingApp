@@ -3,10 +3,10 @@ import { Pressable, Text, StyleSheet} from 'react-native';
 // Example use:
 // <CometButton title="LOGIN" onPress={() => Alert.alert('Pressed!')} />
 const CometButton = (props) => {
- const {title, onPress} = props;
+ const { onPress } = props;
  return (
     <Pressable onPress={onPress} style={styles.btn}>
-         <Text style={styles.text}>{title}</Text>
+         <Text style={styles.text}>{props.children}</Text>
     </Pressable>
  )
 }
