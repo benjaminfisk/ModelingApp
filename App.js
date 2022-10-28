@@ -1,82 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Alert } from 'react-native';
-import CometButton from './components/CometButton';
-import ComentInput from './components/CometInput';
 import React from 'react';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+import CometButton from './components/CometButton';
+import AUMB_CheckIn from './pages/AUMB_CheckIn';
+import Sign_In from './pages/Sign_In';
+import { global_styles } from './assets/styles';
 
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
-
+  const Stack = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator style={styles.container}>
+      <Stack.Navigator style={global_styles.container}>
           <Stack.Screen name="Home" component={HomeScreen} /> 
-          <Stack.Screen name="Sign In" component={SignIn} />
-          <Stack.Screen name="Check In" component={CheckIn} />
+          <Stack.Screen name="Sign In" component={Sign_In} />
+          <Stack.Screen name="Check In" component={AUMB_CheckIn} />
       </Stack.Navigator>
-      <View style={[styles.container,styles.blueBG]}>
-        <Text>This is part of the App component.</Text>
+      <View style={[styles.app,global_styles.blueBG]}>
+        <Text style={[global_styles.text, {color: 'white'}]}>This is part of the App component.</Text>
         <StatusBar style="auto" />
       </View>
     </NavigationContainer>
   );
 }
+const styles = StyleSheet.create({
+  app: {
+    width: '100%',
+    height: '20%',
+  }
+});
+
 function HomeScreen ({ navigation }) {
   return (
-    <View style={[styles.container, styles.redBG]}>
-      <Text style={styles.text}>This is the Home screen of the app</Text>
+    <View style={[global_styles.container, global_styles.redBG]}>
+      <Text style={global_styles.text}>This is the Home screen of the app</Text>
       <CometButton onPress={() => navigation.navigate('Sign In')}>Sign In</CometButton>
       <CometButton onPress={() => navigation.navigate('Check In')}>Check In</CometButton>
     </View>
   );
 }
-function SignIn( { navigation } ) {
-  return (
-    <View style={[styles.container, styles.yellowBG]}>
-      <Text style={styles.text}>This is the SignIn screen of the app</Text>
-      <CometButton onPress={() => navigation.navigate('Home')}>Home</CometButton>
-      <CometButton onPress={() => navigation.navigate('Check In')}>Check In</CometButton>
-    </View>
-  )
-}
-function CheckIn( { navigation } ) {
-  return (
-    <View style={[styles.container, styles.greenBG]}>
-      <Text style={styles.text}>This is the CheckIn screen of the app</Text>
-      <CometButton onPress={() => navigation.navigate('Home')}>Home</CometButton>
-      <CometButton onPress={() => navigation.navigate('Sign In')}>SignIn</CometButton>
-    </View>
-  )
-}
-
-
-const styles = StyleSheet.create({
-  text : {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  container: {
-    flex: 1,
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 10,
-  },
-  redBG: {
-    backgroundColor: '#ff000080',
-  },
-  blueBG: {
-    backgroundColor: '#0000ff80',
-  },
-  greenBG: {
-    backgroundColor: '#00ff0080',
-  },
-  yellowBG: {
-    backgroundColor: '#ffff0080',
-  },
-});
