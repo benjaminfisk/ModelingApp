@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Alert } from 'react-native';
 import CometButton from './components/CometButton';
+import ComentInput from './components/CometInput';
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -12,6 +13,7 @@ export default function App() {
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
       <CometButton onPress={() => Alert.alert("Button Clicked")}>Click me</CometButton>
+      <ComentInput />
     </View>
   );
 }
@@ -19,7 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f5f5f5',
     alignItems: 'center',
     justifyContent: 'center',
   },

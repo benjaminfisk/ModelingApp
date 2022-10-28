@@ -1,15 +1,15 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet} from 'react-native';
 
-type Props = {
-    onPress: () => void;
+type PressableProps = React.ComponentProps<typeof Pressable>;
+interface Props extends PressableProps {
     children: string;
 }
 const CometButton: React.FC<Props> = (props) => {
     const { onPress } = props;
     return (
         <Pressable onPress={onPress} style={styles.btn}>
-                <Text style={styles.text}>{props.children}</Text>
+            <Text style={styles.text}>{props.children}</Text>
         </Pressable>
     );
 }
