@@ -1,16 +1,28 @@
-import { Button, View, StyleSheet} from 'react-native';
+import { Pressable, Text, StyleSheet} from 'react-native';
 
+// Example use:
+// <CometButton title="LOGIN" onPress={() => Alert.alert('Pressed!')} />
 const CometButton = (props) => {
- const {title, onClick} = props;
+ const {title, onPress} = props;
  return (
-    <View style={styles.btn}>
-        <Button onClick={onClick} title={title} />
-    </View>
+    <Pressable onPress={onPress} style={styles.btn}>
+         <Text style={styles.text}>{title}</Text>
+    </Pressable>
  )
 }
 const styles = StyleSheet.create({
     btn : {
-        width: '100%',
+        backgroundColor: 'lightgrey',
+        borderRadius: 32,
+        width: 256,
+        height: 48,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: "700",
     }
 })
 export default CometButton
