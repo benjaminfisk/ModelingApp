@@ -1,14 +1,17 @@
+import React from 'react';
 import { Pressable, Text, StyleSheet} from 'react-native';
 
-// Example use:
-// <CometButton title="LOGIN" onPress={() => Alert.alert('Pressed!')} />
-const CometButton = (props) => {
- const { onPress } = props;
- return (
-    <Pressable onPress={onPress} style={styles.btn}>
-         <Text style={styles.text}>{props.children}</Text>
-    </Pressable>
- )
+type Props = {
+    onPress: () => void;
+    children: string;
+}
+const CometButton: React.FC<Props> = (props) => {
+    const { onPress } = props;
+    return (
+        <Pressable onPress={onPress} style={styles.btn}>
+                <Text style={styles.text}>{props.children}</Text>
+        </Pressable>
+    );
 }
 const styles = StyleSheet.create({
     btn : {
