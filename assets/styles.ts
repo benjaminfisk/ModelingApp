@@ -16,16 +16,16 @@ export const colors = {
 
 
 export const global_styles = StyleSheet.create({
-    text : {
-      color: 'black',
+    pageTitle : {
+      color: colors.primary,
       fontSize: 20,
       fontWeight: "700",
+      textAlign: "center",
     },
     container: {
       width: '100%',
       height: '100%',
       alignItems: 'center',
-      // justifyContent: 'center',
     },
     redBG: {
       backgroundColor: '#ff000080',

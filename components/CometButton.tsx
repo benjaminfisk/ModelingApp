@@ -17,7 +17,7 @@ const CometButton: React.FC<Props> = (props) => {
 }
 const styles = StyleSheet.create({
     btn : {
-        backgroundColor: colors.forms,
+        backgroundColor: colors.primary,
         borderRadius: 32,
         width: 256,
         height: 48,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     text: {
-        color: colors.black,
+        color: colors.accent,
         fontSize: 20,
         fontWeight: "700",
     }
