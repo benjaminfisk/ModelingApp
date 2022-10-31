@@ -12,8 +12,8 @@ const Manual_Check_In: React.FC<Props> = (props) => {
   const { navigation } = props
   return (
     <View style={global_styles.container}>
-      <Header title="Manual Check-In"/>
-      <Text style={global_styles.pageTitle}>Manual_Check-In</Text>
+      <Header title="MANUAL CHECK-IN"/>
+      <Text style={global_styles.pageTitle}>MANUAL CHECK-IN</Text>
     </View>
   )
 }

@@ -1,8 +1,10 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native'
 import { colors } from '../assets/styles'
 import { LinearGradient } from 'expo-linear-gradient';
 
+import Feather from 'react-native-vector-icons/Feather';
+Feather.loadFont();
 
 // @ts-ignore
 import MusicIcon from '../assets/MusicIcon.png';
@@ -25,8 +27,11 @@ const Header: React.FC<Props> = (props) => {
             <View>
                 <Text style={styles.headerText}>{title}</Text>
             </View>
+            <View style={styles.filler} />
             <View>
-
+                <TouchableOpacity>
+                    <Feather name="menu" size={40} color={colors.accent} style={styles.menuIcon} />
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
@@ -42,8 +47,8 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: colors.white,
-        fontSize: 24,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: '700',
         padding: 8,
     },
     logo: {
@@ -59,7 +64,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: colors.secondary,
         marginHorizontal: 16,
-    }
+    },
+    filler: {
+        flex: 1,
+    },
+    menuIcon: {
+        marginRight: 16,
+    },
 })
 
 export default Header
