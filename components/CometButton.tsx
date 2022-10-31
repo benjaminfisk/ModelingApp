@@ -1,18 +1,18 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet} from 'react-native';
+import { Pressable, TouchableOpacity,  Text, StyleSheet} from 'react-native';
 
 import { colors } from '../assets/styles';
 
-type PressableProps = React.ComponentProps<typeof Pressable>;
-interface Props extends PressableProps {
+type TouchableOpacityProps = React.ComponentProps<typeof TouchableOpacity>;
+interface Props extends TouchableOpacityProps {
     children: string;
 }
 const CometButton: React.FC<Props> = (props) => {
     const { onPress } = props;
     return (
-        <Pressable onPress={onPress} style={styles.btn}>
+        <TouchableOpacity onPress={onPress} style={styles.btn}>
             <Text style={styles.text}>{props.children}</Text>
-        </Pressable>
+        </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({

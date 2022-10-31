@@ -1,6 +1,5 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Alert } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,7 +9,7 @@ import CometButton from './components/CometButton';
 import AUMB_CheckIn from './pages/AUMB_CheckIn';
 import Sign_In from './pages/Sign_In';
 import View_All_Checked_In from './pages/Admin/View_All_Checked_In';
-import { global_styles } from './assets/styles';
+import { global_styles, colors } from './assets/styles';
 
 
 export default function App() {
@@ -19,7 +18,7 @@ export default function App() {
   const Tab = createBottomTabNavigator();
 
   //Admin Tab Navigation
-  TabNavigator = () => {
+  const TabNavigator = () => {
     return (
       <Tab.Navigator style={global_styles.container}>
         <Tab.Screen
@@ -43,7 +42,7 @@ export default function App() {
   }
 
   //Drawer Navigation
-  DrawerNavigator = () => {
+  const DrawerNavigator = () => {
     return (
       <Drawer.Navigator>
       </Drawer.Navigator>
@@ -52,6 +51,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <SafeAreaView style={styles.header} />
       <Stack.Navigator>
         <Stack.Screen
           name="Sign In"
@@ -69,18 +69,14 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
-      <View style={[styles.app, global_styles.blueBG]}>
-        <Text style={[global_styles.text, { color: 'white' }]}>This is part of the App component.</Text>
-        <StatusBar style="auto" />
-      </View>
     </NavigationContainer>
   );
 }
-
 const styles = StyleSheet.create({
-  app: {
+  header: {
     width: '100%',
-    height: '20%',
+    height: 45,
+    backgroundColor: colors.primary,
   }
 });
 

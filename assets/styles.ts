@@ -19,14 +19,13 @@ export const global_styles = StyleSheet.create({
     text : {
       color: 'black',
       fontSize: 20,
-      fontWeight: 'bold',
+      fontWeight: "700",
     },
     container: {
-      flex: 1,
       width: '100%',
+      height: '100%',
       alignItems: 'center',
-      justifyContent: 'center',
-      gap: 10,
+      // justifyContent: 'center',
     },
     redBG: {
       backgroundColor: '#ff000080',
