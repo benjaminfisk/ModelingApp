@@ -5,6 +5,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import CometButton from './components/CometButton';
 import AUMB_CheckIn from './pages/AUMB_CheckIn';
 import Sign_In from './pages/Sign_In';
@@ -24,31 +28,49 @@ export default function App() {
   //Admin Tab Navigation
   const TabNavigator = () => {
     return (
-      <Tab.Navigator style={global_styles.container}>
+      <Tab.Navigator
+        style={global_styles.container}
+        screenOptions={{tabBarShowLabel: false}}
+      >
         <Tab.Screen
           name="Manual Check In"
           component={Manual_Check_In}
-          options={{ headerShown: false }}
+          options={{
+            tabBarIcon: ({ color }) => <FontAwesome5 name="user-clock" size={32} color={color} />,
+            headerShown: false
+          }}
         />
         <Tab.Screen
           name="View All Checked In"
           component={View_All_Checked_In}
-          options={{ headerShown: false }}
+          options={{
+            tabBarIcon: ({ color }) => <Ionicons name="checkmark-circle" size={32} color={color} />,
+            headerShown: false
+          }}
         />
         <Tab.Screen
           name="Past Attendance"
           component={Past_Attendance}
-          options={{ headerShown: false }}
+          options={{
+            tabBarIcon: ({ color }) => <Entypo name="calendar" size={32} color={color} />,
+            headerShown: false
+          }}
         />
         <Tab.Screen
           name="Edit_Practice_Location"
           component={Edit_Practice_Location}
-          options={{ headerShown: false }}
+          options={{
+            tabBarIcon: ({ color }) => <Entypo name="location-pin" size={32} color={color} />,
+            headerShown: false
+          }}
         />
         <Tab.Screen
           name="Roster"
           component={Roster}
-          options={{ headerShown: false }}
+          options={{
+            tabBarIcon: ({ color }) => <Entypo name="text-document" size={32} color={color} />,
+            headerShown: false
+          }}
         />
       </Tab.Navigator>
     )
