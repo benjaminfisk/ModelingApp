@@ -12,8 +12,8 @@ const Sign_In: React.FC<Props> = ( props ) => {
   return (
     <View style={[global_styles.container, global_styles.yellowBG]}>
       <Text style={global_styles.text}>This is the SignIn screen of the app</Text>
-      <CometButton onPress={() => navigation.navigate('Home')}>Home</CometButton>
-      <CometButton onPress={() => navigation.navigate('Check In')}>Check In</CometButton>
+      <CometButton onPress={() => navigation.navigate('Check In')}>Student Sign In</CometButton>
+      <CometButton onPress={() => navigation.navigate('Admin Area')}>Admin Sign In</CometButton>
     </View>
   )
 }
