@@ -1,6 +1,8 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native'
 import { colors } from '../assets/styles'
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 // @ts-ignore
 import MusicIcon from '../assets/MusicIcon.png';
@@ -13,9 +15,12 @@ interface Props extends HeaderProps {
 const Header: React.FC<Props> = (props) => {
     const { title } = props
     return (
-        <View style={styles.headerBG}>
+        <SafeAreaView style={styles.headerBG}>
+
             <View>
-                <Image source={MusicIcon}/>
+                <LinearGradient colors={["#E57C45", "#EEAA86"]} style={styles.logoHolder}>
+                    <Image source={MusicIcon} style={styles.logo} />
+                </LinearGradient>
             </View>
             <View>
                 <Text style={styles.headerText}>{title}</Text>
@@ -23,7 +28,7 @@ const Header: React.FC<Props> = (props) => {
             <View>
 
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
@@ -31,9 +36,9 @@ const styles = StyleSheet.create({
     headerBG: {
         backgroundColor: colors.primary,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
         width: '100%',
+        height: 63,
     },
     headerText: {
         color: colors.white,
@@ -41,16 +46,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         padding: 8,
     },
+    logo: {
+        width: 17.42,
+        height: 17.42,
+    },
     logoHolder: {
-        width: 125,
-        height: 125,
+        width: 31.11,
+        height: 31.11,
         borderRadius: 125,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.secondary,
-        top: 107,
-      }
+        marginHorizontal: 16,
+    }
 })
 
 export default Header
