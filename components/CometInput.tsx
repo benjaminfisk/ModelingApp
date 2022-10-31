@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
         color: colors.primary,
         fontSize: 16,
         marginBottom: 16,
+        fontWeight: "500",
+        lineHeight: 23,
     },
 })
 export default CometInput

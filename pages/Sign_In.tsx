@@ -19,6 +19,7 @@ const Sign_In: React.FC<Props> = ( props ) => {
       </View>
       <View style={styles.inputs}>
         <Text style={global_styles.pageTitle}>SIGN IN</Text>
+        <View style={styles.spacer}/>
         <CometInput label='Email'/>
         <View style={styles.spacer}/>
         <CometInput label='Password'/>
