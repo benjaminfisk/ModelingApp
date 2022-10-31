@@ -1,10 +1,13 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import React from 'react'
+import { View, Text, StyleSheet, Image,  } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
+
 import { global_styles, colors } from '../assets/styles';
 // @ts-ignore
 import MusicIcon from '../assets/MusicIcon.png';
 import CometButton from '../components/CometButton';
 import CometInput from '../components/CometInput';
-import React from 'react'
+import Checkbox from '../components/Checkbox';
 
 type Props = {
   navigation: any
@@ -14,20 +17,24 @@ const Sign_In: React.FC<Props> = ( props ) => {
   const { navigation } = props;
   return (
     <View style={[global_styles.container, {backgroundColor: colors.accent}]}>
-      <View style={styles.logoHolder}>
+      <LinearGradient colors={["#E57C45", "#EEAA86"]} style={styles.logoHolder}>
         <Image source={MusicIcon} style={styles.logo} />
-      </View>
+      </LinearGradient>
       <View style={styles.inputs}>
         <Text style={global_styles.pageTitle}>SIGN IN</Text>
         <View style={styles.spacer}/>
         <CometInput label='Email'/>
         <View style={styles.spacer}/>
         <CometInput label='Password'/>
+        <View style={styles.spacer}/>
+        <Checkbox label='Remember Me'/>
       </View>
+      
+
       <View style={styles.buttons}>
-        <CometButton onPress={() => navigation.navigate('Check In')}>Student Sign In</CometButton>
+        <CometButton onPress={() => navigation.navigate('Check In')}>Student LOGIN</CometButton>
         <View style={styles.spacer} />
-        <CometButton onPress={() => navigation.navigate('Admin Area')}>Admin Sign In</CometButton>
+        <CometButton onPress={() => navigation.navigate('Admin Area')}>Admin LOGIN</CometButton>
       </View>
     </View>
   )
@@ -65,5 +72,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.secondary,
     marginTop: 102,
+    // background: linear-gradient(180deg, #E57C45 0%, #EEAA86 100%);
   }
 })
