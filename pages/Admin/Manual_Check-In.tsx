@@ -13,7 +13,7 @@ const Manual_Check_In: React.FC<Props> = (props) => {
   return (
     <View style={global_styles.container}>
       <Header title="Manual Check-In"/>
-      <Text style={global_styles.text}>Manual_Check-In</Text>
+      <Text style={global_styles.pageTitle}>Manual_Check-In</Text>
     </View>
   )
 }
