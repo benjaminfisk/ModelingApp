@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, StyleProp, ViewProps, TextProps } from 'react-native'
+import { View, Text, StyleSheet, StyleProp, TouchableOpacity } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
 import Header from '../../components/Header'
 
@@ -23,7 +23,7 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
         <Text style={[appliedText, {flex: 2}]}>{data.name}</Text>
         <Text style={[appliedText, {flex: 1}]}>{data.section}</Text>
         {/* <Text>{data.status}</Text> */}
-        <Text style={[appliedText, {flex: 1}]}>{data.time}</Text>
+        <Text style={[appliedText, {flex: 1, textAlign: 'right'}]}>{data.time}</Text>
       </View>
     )
   }
@@ -36,16 +36,16 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
   }
   const data: StudentStatus[] = [
     { name: 'John Doe', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
-    { name: 'Jane Doe', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
-    { name: 'Jane Smith', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
-    { name: 'John Doe', status: 'Checked In', section: 'Brass', time: '3:30 pm' },
-    { name: 'Jane Doe', status: 'Checked In', section: 'Brass', time: '3:30 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Brass', time: '3:30 pm' },
-    { name: 'Jane Smith', status: 'Checked In', section: 'Brass', time: '3:30 pm' },
-    { name: 'John Doe', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
+    { name: 'Jane Doe', status: 'Checked In', section: 'Ensemble', time: '3:23 pm' },
+    { name: 'John Smith', status: 'Checked In', section: 'Ensemble', time: '3:21 pm' },
+    { name: 'Jane Smith', status: 'Checked In', section: 'Ensemble', time: '3:11 pm' },
+    { name: 'John Doe', status: 'Checked In', section: 'Brass', time: '3:22 pm' },
+    { name: 'Jane Doe', status: 'Checked In', section: 'Brass', time: '3:33 pm' },
+    { name: 'John Smith', status: 'Checked In', section: 'Brass', time: '3:27 pm' },
+    { name: 'Jane Smith', status: 'Checked In', section: 'Brass', time: '3:29 pm' },
+    { name: 'John Doe', status: 'Checked In', section: 'Woodwinds', time: '3:31 pm' },
     { name: 'Jane Doe', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
+    { name: 'John Smith', status: 'Checked In', section: 'Woodwinds', time: '3:35 pm' },
     { name: 'Jane Smith', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
     { name: 'John Doe', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
 
@@ -65,6 +65,9 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
           <Item data={item} key={index} />
         ))}
       </View>
+      <TouchableOpacity style={styles.loadMoreButton}>
+        <Text>Load More</Text>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -74,14 +77,14 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 86
+    marginTop: 64
   },
   listView: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 86,
+    marginTop: 32,
     paddingLeft: 32,
     paddingRight: 32,
   },
@@ -110,6 +113,23 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 14,
     lineHeight: 20,
+  },
+  loadMoreButton: {
+    marginTop: 32,
+    width: 137,
+    height: 36,
+    color: colors.primary,
+    fontSize: 14,
+    fontWeight: '400',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.forms
   }
 })
 
