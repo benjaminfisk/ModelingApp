@@ -17,7 +17,12 @@ const Sign_In: React.FC<Props> = ( props ) => {
       <View style={styles.logoHolder}>
         <Image source={MusicIcon} style={styles.logo} />
       </View>
-      <Text style={global_styles.text}>SIGN IN</Text>
+      <View style={styles.inputs}>
+        <Text style={global_styles.pageTitle}>SIGN IN</Text>
+        <CometInput label='Email'/>
+        <View style={styles.spacer}/>
+        <CometInput label='Password'/>
+      </View>
       <View style={styles.buttons}>
         <CometButton onPress={() => navigation.navigate('Check In')}>Student Sign In</CometButton>
         <View style={styles.spacer} />
@@ -35,7 +40,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    top: "60%",
+    marginTop: 64,
+  },
+  inputs: {
+    marginLeft: 45,
+    marginRight: 45,
+    marginTop: 38,
+    alignContent: 'center',
   },
   spacer: {
     height: 16,
@@ -52,7 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.secondary,
-    top: 107,
-  
+    marginTop: 102,
   }
 })

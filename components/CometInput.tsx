@@ -1,24 +1,32 @@
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, View, Text } from 'react-native';
 
 import { colors } from '../assets/styles';
 
 type TextInputProps = React.ComponentProps<typeof TextInput>;
 interface Props extends TextInputProps {
-    children: string;
+    label: string;
 }
 const CometInput: React.FC<Props> = (props) => {
+    const { label } = props;
     return (
-        <TextInput style={styles.input} {...props} />
+        <View>
+            <Text style={styles.formLabel}>{label}</Text>
+            <TextInput style={styles.input} {...props} />
+        </View>
     );
 }
 const styles = StyleSheet.create({
-    input : {
+    input: {
         backgroundColor: colors.forms,
         width: 300,
         height: 32,
-        padding : 8,
+        padding: 8,
     },
-
+    formLabel: {
+        color: colors.primary,
+        fontSize: 16,
+        marginBottom: 16,
+    },
 })
 export default CometInput
