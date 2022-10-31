@@ -10,8 +10,8 @@ type Props = {
 const Edit_Practice_Location: React.FC<Props> = (props) => {
   const { navigation } = props
   return (
-    <View>
-      <Text>Edit_Practice_Location</Text>
+    <View style={global_styles.container}>
+      <Text style={global_styles.text}>Edit_Practice_Location</Text>
     </View>
   )
 }

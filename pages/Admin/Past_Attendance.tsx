@@ -10,8 +10,8 @@ type Props = {
 const Past_Attendance: React.FC<Props> = (props) => {
   const { navigation } = props
   return (
-    <View>
-      <Text>Past_Attendance</Text>
+    <View style={global_styles.container}>
+      <Text style={global_styles.text}>Past_Attendance</Text>
     </View>
   )
 }

@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
+import { View, Text, StyleSheet } from 'react-native'
+
 import { global_styles } from '../../assets/styles'
-import CometButton from '../../components/CometButton'
+import Header from '../../components/Header'
 
 type Props = {
   navigation: any
@@ -10,8 +11,9 @@ type Props = {
 const Manual_Check_In: React.FC<Props> = (props) => {
   const { navigation } = props
   return (
-    <View>
-      <Text>Manual_Check-In</Text>
+    <View style={global_styles.container}>
+      <Header title="Manual Check-In"/>
+      <Text style={global_styles.text}>Manual_Check-In</Text>
     </View>
   )
 }

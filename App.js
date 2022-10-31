@@ -9,6 +9,10 @@ import CometButton from './components/CometButton';
 import AUMB_CheckIn from './pages/AUMB_CheckIn';
 import Sign_In from './pages/Sign_In';
 import View_All_Checked_In from './pages/Admin/View_All_Checked_In';
+import Roster from './pages/Admin/Roster';
+import Past_Attendance from './pages/Admin/Past_Attendance';
+import Manual_Check_In from './pages/Admin/Manual_Check-In';
+import Edit_Practice_Location from './pages/Admin/Edit_Practice_Location';
 import { global_styles, colors } from './assets/styles';
 
 
@@ -22,19 +26,28 @@ export default function App() {
     return (
       <Tab.Navigator style={global_styles.container}>
         <Tab.Screen
-          name="Home"
-          component={AdminArea}
-          options={{ headerShown: false }}
-        />
-        {/* <Tab.Screen name="Sign In" component={Sign_In} /> */}
-        <Tab.Screen
-          name="Check In"
-          component={AUMB_CheckIn}
+          name="Manual Check In"
+          component={Manual_Check_In}
           options={{ headerShown: false }}
         />
         <Tab.Screen
           name="View All Checked In"
           component={View_All_Checked_In}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Past Attendance"
+          component={Past_Attendance}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Edit_Practice_Location"
+          component={Edit_Practice_Location}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="Roster"
+          component={Roster}
           options={{ headerShown: false }}
         />
       </Tab.Navigator>

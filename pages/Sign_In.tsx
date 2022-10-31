@@ -10,10 +10,10 @@ type Props = {
   navigation: any
 }
 
-const Sign_In: React.FC<Props> = ( props ) => {
+const Sign_In: React.FC<Props> = (props) => {
   const { navigation } = props;
   return (
-    <View style={[global_styles.container, {backgroundColor: colors.accent}]}>
+    <View style={[global_styles.container, { backgroundColor: colors.accent }]}>
       <View style={styles.logoHolder}>
         <Image source={MusicIcon} style={styles.logo} />
       </View>
@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.secondary,
     top: 107,
-  
   }
 })
