@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, StyleProp, TouchableOpacity } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
+import { students, StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
 
 type Props = {
@@ -10,8 +11,9 @@ type Props = {
 const View_All_Checked_In: React.FC<Props> = (props) => {
   const { navigation } = props;
 
+
   type ItemProps = {
-    data: StudentStatus
+    data: StudentType
     viewStyle?: StyleProp<any>
     textStyle?: StyleProp<any>
   }
@@ -27,29 +29,9 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
       </View>
     )
   }
-  
-  type StudentStatus = {
-    name: string,
-    status: string,
-    section: string,
-    time: string
-  }
-  const data: StudentStatus[] = [
-    { name: 'John Doe', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
-    { name: 'Jane Doe', status: 'Checked In', section: 'Ensemble', time: '3:23 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Ensemble', time: '3:21 pm' },
-    { name: 'Jane Smith', status: 'Checked In', section: 'Ensemble', time: '3:11 pm' },
-    { name: 'John Doe', status: 'Checked In', section: 'Brass', time: '3:22 pm' },
-    { name: 'Jane Doe', status: 'Checked In', section: 'Brass', time: '3:33 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Brass', time: '3:27 pm' },
-    { name: 'Jane Smith', status: 'Checked In', section: 'Brass', time: '3:29 pm' },
-    { name: 'John Doe', status: 'Checked In', section: 'Woodwinds', time: '3:31 pm' },
-    { name: 'Jane Doe', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
-    { name: 'John Smith', status: 'Checked In', section: 'Woodwinds', time: '3:35 pm' },
-    { name: 'Jane Smith', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
-    { name: 'John Doe', status: 'Checked In', section: 'Woodwinds', time: '3:30 pm' },
 
-  ]
+  const data = students.filter((student) => student.status === 'Checked In');
+  
   return (
     <View style={global_styles.container}>
       <Header title='VIEW ALL CHECKED-IN' />
