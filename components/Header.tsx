@@ -2,7 +2,9 @@ import React from 'react'
 import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'react-native'
 import { colors } from '../assets/styles'
 import { LinearGradient } from 'expo-linear-gradient';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
+import LogoutModal from './LogoutModal';
 import Feather from 'react-native-vector-icons/Feather';
 Feather.loadFont();
 
@@ -16,7 +18,20 @@ interface Props extends HeaderProps {
 
 const Header: React.FC<Props> = (props) => {
     const { title } = props
+    const Drawer = createDrawerNavigator();
+    //Drawer Navigation
+    const DrawerNavigator = () => {
+        return (
+            <Drawer.Navigator>
+                <Drawer.Screen
+                    name="Logout"
+                    component={LogoutModal}
+                />
+            </Drawer.Navigator>
+        )
+    }
     return (
+        
         <SafeAreaView style={styles.headerBG}>
 
             <View>
@@ -29,7 +44,7 @@ const Header: React.FC<Props> = (props) => {
             </View>
             <View style={styles.filler} />
             <View>
-                <TouchableOpacity>
+                <TouchableOpacity >
                     <Feather name="menu" size={40} color={colors.accent} style={styles.menuIcon} />
                 </TouchableOpacity>
             </View>
