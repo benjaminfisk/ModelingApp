@@ -14,7 +14,7 @@ type Props = {
 const Manual_Check_In: React.FC<Props> = (props) => {
   const { navigation } = props;
   return (
-    <View style={[global_styles.container, {backgroundColor: colors.accent}]}>
+    <View style={[global_styles.container]}>
       <Header title='MANUAL CHECK-IN' />
       <View style={styles.inputs}>
         <Text style={global_styles.pageTitle}>INPUT INFORMATION</Text>
