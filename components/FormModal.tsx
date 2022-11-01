@@ -30,9 +30,7 @@ const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
 
     return (
     <SafeAreaView style={styles.modal}>
-      <View style={styles.title}>
-        <Text style={[global_styles.pageTitle, ]}>{title}</Text>
-      </View>
+      <Text style={[global_styles.pageTitle, styles.title]}>{title}</Text>
 
       <View style={styles.inputs}>
         <CometInput label='Name' onChangeText={setName}/>
@@ -52,18 +50,18 @@ const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
 const styles = StyleSheet.create({
   title: {
     width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
+    marginTop: 32,
   },
   button: {
     marginTop: 64,
   },
   inputs: {
-    paddingLeft: 42,
-    paddingRight: 42,
+    width: '100%',
+    marginLeft: 42,
+    marginRight: 42,
     marginTop: 32,
-    alignContent: 'center',
+    display: 'flex',
+    alignItems: 'center',
   },
   spacer: {
     height: 32,
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 'auto',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
 }
 )

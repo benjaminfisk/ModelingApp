@@ -46,7 +46,7 @@ const Roster: React.FC<Props> = (props) => {
 
   const data = students;
   return (
-    <View style={global_styles.container}>
+    <View>
       <SafeAreaView style={styles.modal}>
         <Modal 
           visible={adding} 
@@ -63,27 +63,28 @@ const Roster: React.FC<Props> = (props) => {
             />
         </Modal>
       </SafeAreaView>
-
-      <Header title='ROSTER' />
-      <View style={styles.editSaveRow}>
-        <CometSmallButton variant='dark' onPress={() => setAddButtonVisible((prev) => !prev)}>{addButtonVisible ? "SAVE CHANGES" : "EDIT ROSTER"}</CometSmallButton>
-        {addButtonVisible && <CometSmallButton variant='light' onPress={() => setAdding(true)}>ADD STUDENT</CometSmallButton>}
+      <View style={global_styles.container}>
+        <Header title='ROSTER' />
+        <View style={styles.editSaveRow}>
+          <CometSmallButton variant='dark' onPress={() => setAddButtonVisible((prev) => !prev)}>{addButtonVisible ? "SAVE CHANGES" : "EDIT ROSTER"}</CometSmallButton>
+          {addButtonVisible && <CometSmallButton variant='light' onPress={() => setAdding(true)}>ADD STUDENT</CometSmallButton>}
+        </View>
+        <View style={styles.titleView}>
+          <Text style={global_styles.pageTitle}>ROSTER</Text>
+        </View>
+        <View style={styles.listView}>
+          <Item data={{name: "Name", section: "Section", status: "Status", time: "Time"}} 
+            textStyle={styles.titleText} 
+            viewStyle={styles.titleRow} 
+          />
+          {data.map((item, index) => (
+            <Item data={item} key={index} showButtons={addButtonVisible} />
+          ))}
+        </View>
+        <TouchableOpacity style={styles.loadMoreButton}>
+          <Text>Load More</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.titleView}>
-        <Text style={global_styles.pageTitle}>ROSTER</Text>
-      </View>
-      <View style={styles.listView}>
-        <Item data={{name: "Name", section: "Section", status: "Status", time: "Time"}} 
-          textStyle={styles.titleText} 
-          viewStyle={styles.titleRow} 
-        />
-        {data.map((item, index) => (
-          <Item data={item} key={index} showButtons={addButtonVisible} />
-        ))}
-      </View>
-      <TouchableOpacity style={styles.loadMoreButton}>
-        <Text>Load More</Text>
-      </TouchableOpacity>
     </View>
   )
 }
