@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image,  } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { global_styles, colors } from '../assets/styles';
-// @ts-ignore
 import MusicIcon from '../assets/MusicIcon.png';
 import CometButton from '../components/CometButton';
 import CometInput from '../components/CometInput';

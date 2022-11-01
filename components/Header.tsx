@@ -7,8 +7,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import LogoutModal from './LogoutModal';
 import Feather from 'react-native-vector-icons/Feather';
 Feather.loadFont();
-
-// @ts-ignore
 import MusicIcon from '../assets/MusicIcon.png';
 
 type HeaderProps = React.ComponentProps<typeof View>;
