@@ -21,6 +21,7 @@ export const global_styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: "700",
       textAlign: "center",
+      lineHeight: 29,
     },
     container: {
       width: '100%',

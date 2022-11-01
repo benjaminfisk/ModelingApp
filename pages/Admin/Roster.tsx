@@ -1,57 +1,73 @@
 import React from 'react'
-import { View, Text, StyleSheet, StyleProp, TouchableOpacity, Pressable, Image } from 'react-native'
+import { View, Text, StyleSheet, StyleProp, TouchableOpacity, Modal, Image, SafeAreaView } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
 import { students, StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
 import CometSmallButton from '../../components/CometSmallButton'
+import FormModal from '../../components/FormModal'
 import deleteBin from '../../assets/deleteBin.png'
 import editPencil from '../../assets/editPencil.png'
+
+type ItemProps = {
+  data: StudentType
+  viewStyle?: StyleProp<any>
+  textStyle?: StyleProp<any>
+  showButtons?: boolean
+}
+const Item: React.FC<ItemProps> = ({data, viewStyle, textStyle, showButtons}) => {
+  const appliedView = viewStyle || styles.itemRow;
+  const appliedText = textStyle || styles.itemText;
+
+  
+  return (
+    <View style={appliedView}>
+      <View style={{flex: 0, display: showButtons ? 'flex': 'none', flexDirection: 'row', paddingRight: 5}}>
+        <TouchableOpacity onPress={() => console.log('Edit')} >
+          <Image source={deleteBin} />
+          </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.log('Remove')} style={{marginLeft:5}}>
+          <Image source={editPencil} />
+          </TouchableOpacity>
+      </View>
+      <Text style={[appliedText, {flex: 3}]}>{data.name}</Text>
+      <Text style={[appliedText, {flex: 1, textAlign: 'left'}]}>{data.section}</Text>
+    </View>
+  )
+}
 
 type Props = {
   navigation: any
 }
 
 const Roster: React.FC<Props> = (props) => {
-  type ItemProps = {
-    data: StudentType
-    viewStyle?: StyleProp<any>
-    textStyle?: StyleProp<any>
-    showButtons?: boolean
-  }
-  const Item: React.FC<ItemProps> = ({data, viewStyle, textStyle, showButtons}) => {
-    const appliedView = viewStyle || styles.itemRow;
-    const appliedText = textStyle || styles.itemText;
-  
-    
-    return (
-      <View style={appliedView}>
-        {showButtons && 
-          <View style={{flex: 0, display: 'flex', flexDirection: 'row', paddingRight: 5}}>
-            <TouchableOpacity onPress={() => console.log('Edit')} >
-              <Image source={deleteBin} />
-              </TouchableOpacity>
-            <TouchableOpacity onPress={() => console.log('Remove')} style={{marginLeft:5}}>
-              <Image source={editPencil} />
-              </TouchableOpacity>
-          </View>
-        }
-        <Text style={[appliedText, {flex: 3}]}>{data.name}</Text>
-        <Text style={[appliedText, {flex: 1, textAlign: 'left'}]}>{data.section}</Text>
-      </View>
-    )
-  }
-
   const { navigation } = props;
-  const [editing, setEditing] = React.useState(false);
+  const [addButtonVisible, setAddButtonVisible] = React.useState(false);
+  const [adding, setAdding] = React.useState(false);
 
-  const data = students.filter((student) => student.status === 'Checked In');
-  
+  const data = students;
   return (
     <View style={global_styles.container}>
+      <SafeAreaView style={styles.modal}>
+        <Modal 
+          visible={adding} 
+          animationType='slide'
+          onRequestClose={() => setAdding(false)}
+          transparent={true}
+          >
+          <FormModal title='ADD STUDENT'
+            onSubmit={(data) => {
+              setAdding(false)
+              console.log(data)
+            }}
+            onCancel={() => setAdding(false)}
+            />
+        </Modal>
+      </SafeAreaView>
+
       <Header title='ROSTER' />
       <View style={styles.editSaveRow}>
-        <CometSmallButton variant='dark' onPress={() => setEditing((prev) => !prev)}>{editing ? "SAVE CHANGES" : "EDIT ROSTER"}</CometSmallButton>
-        {editing && <CometSmallButton variant='light'>ADD STUDENT</CometSmallButton>}
+        <CometSmallButton variant='dark' onPress={() => setAddButtonVisible((prev) => !prev)}>{addButtonVisible ? "SAVE CHANGES" : "EDIT ROSTER"}</CometSmallButton>
+        {addButtonVisible && <CometSmallButton variant='light' onPress={() => setAdding(true)}>ADD STUDENT</CometSmallButton>}
       </View>
       <View style={styles.titleView}>
         <Text style={global_styles.pageTitle}>ROSTER</Text>
@@ -62,7 +78,7 @@ const Roster: React.FC<Props> = (props) => {
           viewStyle={styles.titleRow} 
         />
         {data.map((item, index) => (
-          <Item data={item} key={index} showButtons={editing} />
+          <Item data={item} key={index} showButtons={addButtonVisible} />
         ))}
       </View>
       <TouchableOpacity style={styles.loadMoreButton}>
@@ -144,6 +160,9 @@ const styles = StyleSheet.create({
   iconImage: {
     height: 16,
     width: 16,
+  },
+  modal: {
+
   }
 })
 
