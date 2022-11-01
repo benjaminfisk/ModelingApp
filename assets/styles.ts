@@ -26,18 +26,7 @@ export const global_styles = StyleSheet.create({
       width: '100%',
       height: '100%',
       alignItems: 'center',
-    },
-    redBG: {
-      backgroundColor: '#ff000080',
-    },
-    blueBG: {
-      backgroundColor: '#0000ff80',
-    },
-    greenBG: {
-      backgroundColor: '#00ff0080',
-    },
-    yellowBG: {
-      backgroundColor: '#ffff0080',
-    },
+      backgroundColor: colors.accent
+    }
   });
   

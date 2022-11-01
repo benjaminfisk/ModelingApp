@@ -14,7 +14,7 @@ type Props = {
 const Edit_Practice_Location: React.FC<Props> = (props) => {
   const { navigation } = props;
   return (
-    <View style={[global_styles.container, {backgroundColor: colors.accent}]}>
+    <View style={global_styles.container}>
       <Header title='EDIT PRACTICE LOCATION' />
       <View style={styles.inputs}>
         <Text style={global_styles.pageTitle}>CHANGE LOCATION</Text>
