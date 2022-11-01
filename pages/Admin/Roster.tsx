@@ -5,6 +5,7 @@ import { students, StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
 import CometSmallButton from '../../components/CometSmallButton'
 import FormModal from '../../components/FormModal'
+import ChoiceModal from '../../components/ChoiceModal'
 import deleteBin from '../../assets/deleteBin.png'
 import editPencil from '../../assets/editPencil.png'
 
@@ -46,6 +47,7 @@ const Roster: React.FC<Props> = (props) => {
   const [addButtonVisible, setAddButtonVisible] = React.useState(false);
   const [adding, setAdding] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
+  const [deleting, setDeleting] = React.useState(false);
 
   const data = students;
   return (
@@ -68,7 +70,7 @@ const Roster: React.FC<Props> = (props) => {
       {/* Editing Student Modal */}
       <Modal
         visible={editing}
-        animationType='slide'
+        animationType='fade'
         onRequestClose={() => setEditing(false)}
         transparent={true}
       >
@@ -80,6 +82,20 @@ const Roster: React.FC<Props> = (props) => {
           onCancel={() => setEditing(false)}
         />
       </Modal>
+      {/* Deleting Student Modal */}
+      <Modal
+        visible={deleting}
+        animationType='fade'
+        onRequestClose={() => setDeleting(false)}
+        transparent={true}
+      >
+        <ChoiceModal title='REMOVE STUDENT' 
+          content='Are you sure you want to delete this student?'
+          onYes={() => { setDeleting(false); console.log('delete student')}}
+          onNo={() => { setDeleting(false); console.log('cancel delete')}}
+        />
+      </Modal>
+      
 
       <Header title='ROSTER' />
       <View style={[global_styles.container, (adding || editing) ? styles.modalOpen : undefined]}>
@@ -98,7 +114,7 @@ const Roster: React.FC<Props> = (props) => {
             viewStyle={styles.titleRow} 
           />
           {data.map((item, index) => (
-            <Item data={item} key={index} showButtons={addButtonVisible} editClick={() => setEditing(true)} deleteClick={() => console.log("D")}/>
+            <Item data={item} key={index} showButtons={addButtonVisible} editClick={() => setEditing(true)} deleteClick={() => setDeleting(true)}/>
           ))}
         </View>
         <TouchableOpacity style={styles.loadMoreButton}>
