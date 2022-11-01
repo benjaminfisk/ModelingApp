@@ -1,9 +1,9 @@
 
   export type StudentType = {
     name: string,
-    status: string,
+    status?: string,
     section: string,
-    time: string
+    time?: string
   }
   export const students: StudentType[] = [
     { name: 'John Doe', status: 'Checked In', section: 'Ensemble', time: '3:30 pm' },
