@@ -20,7 +20,7 @@ const Past_Attendance: React.FC<Props> = (props) => {
   const Item: React.FC<ItemProps> = ({data, viewStyle, textStyle}) => {
     const appliedView = viewStyle || styles.itemRow;
     const appliedText = textStyle || styles.itemText;
-    const bigArrow = <Text style={{fontWeight: '900'}}>></Text>;
+    const bigArrow = <Text style={{fontWeight: '900'}}>{'>'}</Text>;
     return (
       <TouchableOpacity style={appliedView}>
         <Text style={[appliedText, {flex: 2}]}>{data.name}</Text>
