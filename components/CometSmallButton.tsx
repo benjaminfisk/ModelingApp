@@ -14,7 +14,7 @@ const CometSmallButton: React.FC<Props> = (props) => {
     const appliedButton = variant === 'dark' ? styles.darkVariant : styles.lightVariant;
     const appliedText = variant === 'dark' ? styles.darkText : styles.lightText;
     return (
-        <TouchableOpacity onPress={onPress} style={[styles.btn, appliedButton]}>
+        <TouchableOpacity onPress={onPress} style={[styles.btn, appliedButton]} {...props}>
             <Text style={appliedText}>{props.children}</Text>
         </TouchableOpacity>
     );
