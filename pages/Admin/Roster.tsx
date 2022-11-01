@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, StyleProp, TouchableOpacity, Modal, Image, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, StyleProp, TouchableOpacity, Modal, Image, SafeAreaView, Pressable, TouchableWithoutFeedback } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
 import { students, StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
@@ -54,13 +54,13 @@ const Roster: React.FC<Props> = (props) => {
           onRequestClose={() => setAdding(false)}
           transparent={true}
           >
-          <FormModal title='ADD STUDENT'
-            onSubmit={(data) => {
-              setAdding(false)
-              console.log(data)
-            }}
-            onCancel={() => setAdding(false)}
-            />
+            <FormModal title='ADD STUDENT'
+              onSubmit={(data) => {
+                setAdding(false)
+                console.log(data)
+              }}
+              onCancel={() => setAdding(false)}
+              />
         </Modal>
       </SafeAreaView>
       <View style={global_styles.container}>
