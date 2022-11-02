@@ -18,6 +18,7 @@ import Past_Attendance from './pages/Admin/Past_Attendance';
 import Manual_Check_In from './pages/Admin/Manual_Check-In';
 import Edit_Practice_Location from './pages/Admin/Edit_Practice_Location';
 import { global_styles, colors } from './assets/styles';
+import Attendance_Stats from './pages/Admin/Attendance_Stats';
 
 
 export default function App() {
@@ -101,6 +102,11 @@ export default function App() {
         <Stack.Screen
           name="Check In"
           component={AUMB_CheckIn}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Attendance Stats"
+          component={Attendance_Stats}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

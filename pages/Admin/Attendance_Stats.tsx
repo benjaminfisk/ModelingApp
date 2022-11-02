@@ -1,50 +1,63 @@
 import React from 'react'
 import { View, Text, StyleSheet, StyleProp, TouchableOpacity } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
-import { students, StudentType } from '../../assets/studentRoster'
+import { sampleAttendance, AttendanceType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
+
 type Props = {
-  navigation: any
+  navigation: any,
   route: any
 }
 
-const Past_Attendance: React.FC<Props> = (props) => {
-  const { navigation, route} = props;
+const Attendance_Stats: React.FC<Props> = (props) => {
+  const { navigation, route } = props;
+  console.log(navigation.params)
+
 
   type ItemProps = {
-    data: StudentType
+    data: AttendanceType
     viewStyle?: StyleProp<any>
     textStyle?: StyleProp<any>
-    onPress?: (name: string) => void
   }
-  const Item: React.FC<ItemProps> = ({data, viewStyle, textStyle, onPress}) => {
+  const Item: React.FC<ItemProps> = ({data, viewStyle, textStyle}) => {
     const appliedView = viewStyle || styles.itemRow;
     const appliedText = textStyle || styles.itemText;
-    const bigArrow = <Text style={{fontWeight: '900'}}>{'>'}</Text>;
     return (
-      <TouchableOpacity style={appliedView} onPress={onPress ? () => onPress(data.name): undefined}>
-        <Text style={[appliedText, {flex: 2}]}>{data.name}</Text>
-        <Text style={[appliedText, {flex: 1}]}>{data.section}</Text>
-        <Text style={[appliedText, {flex: 1, textAlign: 'center'}]}>{data.status || bigArrow}</Text>
-      </TouchableOpacity>
+      <View style={appliedView}>
+        <Text style={[appliedText, {flex: 1}]}>{data.date}</Text>
+        <Text style={[appliedText, {flex: 1}]}>{data.time}</Text>
+      </View>
     )
   }
 
-  const data = students.filter((student) => student.status === 'Checked In');
+  const data = sampleAttendance
   
   return (
     <View style={global_styles.container}>
-      <Header title='VIEW PAST ATTENDANCE' />
+      <Header title="VIEW PAST ATTENDANCE"/>
       <View style={styles.titleView}>
-        <Text style={global_styles.pageTitle}>SELECT STUDENT</Text>
+        <Text style={global_styles.pageTitle}>ATTENDANCE STATS</Text>
+        <Text style={styles.nameText}>{route.params.name}</Text>
       </View>
       <View style={styles.listView}>
-        <Item data={{name: "Name", section: "Section", status: "Stats"}} 
+        <View style={styles.titleRow}>
+            <Text style={styles.titleText}>Present</Text>
+            <Text style={styles.titleText}>Tardy</Text>
+            <Text style={styles.titleText}>Absent</Text>
+        </View>
+        <View style={styles.itemRow}>
+            <Text style={styles.itemText}>100</Text>
+            <Text style={styles.itemText}>0</Text>
+            <Text style={styles.itemText}>0</Text>
+        </View>
+      </View>
+      <View style={styles.listView}>
+        <Item data={{date: "Date", time: "Time"}} 
           textStyle={styles.titleText} 
           viewStyle={styles.titleRow} 
         />
         {data.map((item, index) => (
-          <Item data={{...item, status: undefined}} key={index} onPress={(name) => {navigation.navigate('Attendance Stats', {name: name})}}/>
+          <Item data={{...item}} key={index} />
         ))}
       </View>
       <TouchableOpacity style={styles.loadMoreButton}>
@@ -57,9 +70,9 @@ const Past_Attendance: React.FC<Props> = (props) => {
 const styles = StyleSheet.create({
   titleView: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 64
+    marginTop: 64,
   },
   listView: {
     width: '100%',
@@ -74,6 +87,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
     lineHeight: 23,
+    textAlign: 'center',
+    flex: 1,
+  },
+  nameText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: colors.primary,
+    paddingTop: 32
   },
   titleRow: {
     borderBottomColor: colors.primary,
@@ -82,7 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 8,
-    height: 31
+    height: 31,
   },
   itemRow: {
     display: 'flex',
@@ -95,6 +116,8 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 14,
     lineHeight: 20,
+    textAlign: 'center',
+    flex: 1,
   },
   loadMoreButton: {
     marginTop: 32,
@@ -115,4 +138,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default Past_Attendance
+export default Attendance_Stats
