@@ -1,32 +1,15 @@
-import CometButton from "./CometButton";
+import CometSmallButton from "./CometSmallButton";
 import CometInput from "./CometInput";
 import {View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback} from "react-native";
 import {colors, global_styles} from "../assets/styles";
 import {useState} from "react";
 
-type FormData = {
-    name: string;
-    studentID: string;
-    section: string;
-}
 type Props = {
     title: string;
-    onSubmit: (data: FormData) => void;
+    content: string;
     onCancel: () => void;
 }
-const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
-    const [name, setName] = useState<string>('')
-    const [studentID, setStudentID] = useState<string>('')
-    const [section, setSection] = useState<string>('')
-
-    const handleSubmit = () => {
-        onSubmit({
-            name: name,
-            studentID: studentID,
-            section: section
-        });
-    };
-    
+const InfoModal: React.FC<Props> = ({ onCancel, title, content }) => {
 
     return (
     <TouchableOpacity onPressOut={onCancel} activeOpacity={1} style={styles.container}>
@@ -36,15 +19,11 @@ const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
                     <Text style={[global_styles.pageTitle, styles.title]}>{title}</Text>
 
                     <View style={styles.inputs}>
-                        <CometInput label='Name' onChangeText={setName}/>
-                        <View style={styles.spacer}/>
-                        <CometInput label='Student ID' onChangeText={setStudentID}/>
-                        <View style={styles.spacer}/>
-                        <CometInput label='Section' onChangeText={setSection}/>
+                        <Text>{content}</Text>
                     </View>
                     
                     <View style={styles.button}>
-                        <CometButton onPress={handleSubmit}>Submit</CometButton>
+                        <CometSmallButton onPress={onCancel} variant='dark'>CLOSE</CometSmallButton>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -59,7 +38,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   button: {
-    marginTop: 64,
+    marginTop: 32,
   },
   inputs: {
     width: '100%',
@@ -74,7 +53,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     width: 333,
-    height: 514,
+    height: 210,
 
     backgroundColor: colors.accent,
     borderWidth: 2,
@@ -100,4 +79,4 @@ const styles = StyleSheet.create({
 }
 )
 
-export default FormModal
+export default InfoModal

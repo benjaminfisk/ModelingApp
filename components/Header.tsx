@@ -46,6 +46,7 @@ const Header: React.FC<Props> = (props) => {
                     <Feather name="menu" size={40} color={colors.accent} style={styles.menuIcon} />
                 </TouchableOpacity>
             </View>
+            {/* <DrawerNavigator /> */}
         </SafeAreaView>
     )
 }

@@ -81,6 +81,7 @@ export default function App() {
   const DrawerNavigator = () => {
     return (
       <Drawer.Navigator>
+        <Drawer.Screen name="Admin Area" component={AdminArea} />
       </Drawer.Navigator>
     )
   }
