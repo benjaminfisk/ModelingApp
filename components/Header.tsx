@@ -9,6 +9,7 @@ import Feather from 'react-native-vector-icons/Feather';
 Feather.loadFont();
 import MusicIcon from '../assets/MusicIcon.png';
 import closeIcon from '../assets/closeIcon.png';
+import accountIcon from '../assets/accountIcon.png';
 
 type HeaderProps = React.ComponentProps<typeof View>;
 interface Props extends HeaderProps {
@@ -51,10 +52,13 @@ const DrawerNavigator:React.FC<DrawerNavigatorProps> = ({onClose}) => {
     return (
         <View style={drawerStyles.drawerBG}>
             <View style={drawerStyles.titleRow}>
-                <Text style={{color: colors.black, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
-                <TouchableOpacity onPress={onClose}>
-                    <Image source={closeIcon} style={drawerStyles.closeIcon} />
-                </TouchableOpacity>
+                <View style={drawerStyles.iconsRow}>
+                    <Image source={accountIcon} style={drawerStyles.icon} />
+                    <Text style={{color: colors.black, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
+                    <TouchableOpacity onPress={onClose}>
+                        <Image source={closeIcon} style={drawerStyles.icon} />
+                    </TouchableOpacity>
+                </View>
             </View>
             <View style={drawerStyles.body}>
                 <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
@@ -115,19 +119,23 @@ const drawerStyles = StyleSheet.create({
         borderLeftWidth: 2,
         borderBottomWidth: 2,
     },
-    closeIcon: {
-        width: 24,
-        height: 24,
+    icon: {
+        width: 32,
+        height: 32,
     },
     titleRow: {
         backgroundColor: colors.secondary,
         display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        height: 111,
+    },
+    iconsRow: {
+        display: 'flex',
         justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
         paddingHorizontal: 16,
         paddingVertical: 16,
-        height: 111,
     },
     body: {
         backgroundColor: colors.accent,
