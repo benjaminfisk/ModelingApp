@@ -6,13 +6,14 @@ import { colors } from '../assets/styles';
 type TextInputProps = React.ComponentProps<typeof TextInput>;
 interface Props extends TextInputProps {
     label: string;
+    password?: boolean;
 }
 const CometInput: React.FC<Props> = (props) => {
-    const { label } = props;
+    const { label, password } = props;
     return (
         <View>
             <Text style={styles.formLabel}>{label}</Text>
-            <TextInput style={styles.input} {...props} />
+            <TextInput style={styles.input} secureTextEntry={password} {...props} />
         </View>
     );
 }

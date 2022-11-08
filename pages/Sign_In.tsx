@@ -22,9 +22,9 @@ const Sign_In: React.FC<Props> = (props) => {
       <View style={styles.inputs}>
         <Text style={global_styles.pageTitle}>SIGN IN</Text>
         <View style={styles.spacer}/>
-        <CometInput label='Email'/>
+        <CometInput label='Email' />
         <View style={styles.spacer}/>
-        <CometInput label='Password'/>
+        <CometInput label='Password' password={true} />
         <View style={styles.spacer}/>
         <Checkbox label='Remember Me'/>
       </View>
