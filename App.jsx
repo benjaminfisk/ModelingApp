@@ -77,18 +77,8 @@ export default function App() {
     )
   }
 
-  //Drawer Navigation
-  const DrawerNavigator = () => {
+  const StackNavigator = () => {
     return (
-      <Drawer.Navigator>
-        <Drawer.Screen name="Admin Area" component={AdminArea} />
-      </Drawer.Navigator>
-    )
-  }
-
-  return (
-    <NavigationContainer>
-      <SafeAreaView style={styles.header} />
       <Stack.Navigator>
         <Stack.Screen
           name="Sign In"
@@ -111,6 +101,26 @@ export default function App() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
+    )
+  }
+
+
+
+  return (
+    <NavigationContainer>
+      <SafeAreaView style={styles.header} />
+      <Drawer.Navigator>
+        <Drawer.Screen 
+        name="You shouldnt see this" 
+        component={StackNavigator} 
+        options={{ headerShown: false, swipeEnabled: false, drawerPosition: 'right', }} 
+        />
+        <Drawer.Screen 
+        name="Sign Out"
+        component={Sign_In}
+        options={{ headerShown: false, swipeEnabled: false, drawerPosition: 'right'}}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
@@ -122,12 +132,3 @@ const styles = StyleSheet.create({
   }
 });
 
-function AdminArea({ navigation }) {
-  return (
-    <View style={[global_styles.container, global_styles.redBG]}>
-      <Text style={global_styles.text}>This is the Admin area of the app</Text>
-      <CometButton onPress={() => navigation.navigate('Sign In')}>Sign In</CometButton>
-      <CometButton onPress={() => navigation.navigate('Check In')}>Check In</CometButton>
-    </View>
-  );
-}

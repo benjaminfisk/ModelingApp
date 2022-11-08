@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity } from 'r
 import { colors } from '../assets/styles'
 import { LinearGradient } from 'expo-linear-gradient';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 
 import LogoutModal from './LogoutModal';
 import Feather from 'react-native-vector-icons/Feather';
@@ -16,22 +17,11 @@ interface Props extends HeaderProps {
 
 const Header: React.FC<Props> = (props) => {
     const { title } = props
+    const navigation = useNavigation<any>();
     const Drawer = createDrawerNavigator();
-    //Drawer Navigation
-    const DrawerNavigator = () => {
-        return (
-            <Drawer.Navigator>
-                <Drawer.Screen
-                    name="Logout"
-                    component={LogoutModal}
-                />
-            </Drawer.Navigator>
-        )
-    }
-    return (
-        
-        <SafeAreaView style={styles.headerBG}>
 
+    return (
+        <SafeAreaView style={styles.headerBG}>
             <View>
                 <LinearGradient colors={["#E57C45", "#EEAA86"]} style={styles.logoHolder}>
                     <Image source={MusicIcon} style={styles.logo} />
@@ -42,11 +32,10 @@ const Header: React.FC<Props> = (props) => {
             </View>
             <View style={styles.filler} />
             <View>
-                <TouchableOpacity >
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
                     <Feather name="menu" size={40} color={colors.accent} style={styles.menuIcon} />
                 </TouchableOpacity>
             </View>
-            {/* <DrawerNavigator /> */}
         </SafeAreaView>
     )
 }
