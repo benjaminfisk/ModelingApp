@@ -35,6 +35,9 @@ const Attendance_Stats: React.FC<Props> = (props) => {
   return (
     <View style={global_styles.container}>
       <Header title="VIEW PAST ATTENDANCE"/>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+        <Text style={{fontSize: 14, fontWeight: '400', textAlign:'left'}}>{'<'} Back</Text>
+      </TouchableOpacity>
       <View style={styles.titleView}>
         <Text style={global_styles.pageTitle}>ATTENDANCE STATS</Text>
         <Text style={styles.nameText}>{route.params.name}</Text>
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginTop: 64,
+    marginTop: 19,
   },
   listView: {
     width: '100%',
@@ -135,6 +138,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.forms
+  },
+  backButton: {
+    width: "100%",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingLeft: 32,
+    paddingTop: 32,
   }
 })
 
