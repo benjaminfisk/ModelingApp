@@ -10,9 +10,8 @@ type Props = {
     onCancel: () => void;
 }
 const InfoModal: React.FC<Props> = ({ onCancel, title, content }) => {
-
     return (
-    <TouchableOpacity onPressOut={onCancel} activeOpacity={1} style={styles.container}>
+    <TouchableOpacity onPressOut={onCancel} style={styles.container}>
         <TouchableOpacity>
             <TouchableWithoutFeedback>
                 <View style={styles.modal}>
@@ -21,7 +20,6 @@ const InfoModal: React.FC<Props> = ({ onCancel, title, content }) => {
                     <View style={styles.inputs}>
                         <Text>{content}</Text>
                     </View>
-                    
                     <View style={styles.button}>
                         <CometSmallButton onPress={onCancel} variant='dark'>CLOSE</CometSmallButton>
                     </View>
@@ -74,6 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   }
 
 }

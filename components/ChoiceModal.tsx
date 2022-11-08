@@ -56,11 +56,11 @@ const styles = StyleSheet.create({
   },
   modal: {
     width: 333,
-    height: 251,
+    height: 225,
 
     backgroundColor: colors.accent,
-    borderWidth: 2,
-    borderColor: colors.primary,
+    // borderWidth: 2,
+    // borderColor: colors.primary,
     borderRadius: 16,
     display: 'flex',
     alignItems: 'center',
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   }
 
 }

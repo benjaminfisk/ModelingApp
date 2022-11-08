@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, StyleSheet, Image, SafeAreaView, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native'
 import { colors } from '../assets/styles'
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -50,22 +50,30 @@ type DrawerNavigatorProps = {
 const DrawerNavigator:React.FC<DrawerNavigatorProps> = ({onClose}) => {
     const navigation = useNavigation<any>();
     return (
-        <View style={drawerStyles.drawerBG}>
-            <View style={drawerStyles.titleRow}>
-                <View style={drawerStyles.iconsRow}>
-                    <Image source={accountIcon} style={drawerStyles.icon} />
-                    <Text style={{color: colors.black, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
-                    <TouchableOpacity onPress={onClose}>
-                        <Image source={closeIcon} style={drawerStyles.icon} />
-                    </TouchableOpacity>
+        <TouchableOpacity onPressOut={onClose} style={drawerStyles.container}>
+        <TouchableOpacity>
+            <TouchableWithoutFeedback>
+                <View style={drawerStyles.drawerBG}>
+                    <View style={drawerStyles.titleRow}>
+                        <View style={drawerStyles.iconsRow}>
+                            <Image source={accountIcon} style={drawerStyles.icon} />
+                            <Text style={{color: colors.black, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
+                            <TouchableOpacity onPress={onClose}>
+                                <Image source={closeIcon} style={drawerStyles.icon} />
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={drawerStyles.body}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
+                            <Text style={drawerStyles.buttonText}>Log Out</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
-            <View style={drawerStyles.body}>
-                <TouchableOpacity onPress={() => navigation.navigate('Sign In')}>
-                    <Text style={drawerStyles.buttonText}>Log Out</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+            </TouchableWithoutFeedback>
+        </TouchableOpacity>
+        </TouchableOpacity>
+
+        
     )
 }
 
@@ -115,9 +123,6 @@ const drawerStyles = StyleSheet.create({
         top: 0,
         right: 0,
         zIndex: 1,
-        borderColor: colors.secondary,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
     },
     icon: {
         width: 32,
@@ -146,6 +151,12 @@ const drawerStyles = StyleSheet.create({
         fontSize: 14,
         fontWeight: '400',
         margin: 16,
-    }
+    },
+    container: {
+        display: 'flex',
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.3)',
+      }
 })
 export default Header

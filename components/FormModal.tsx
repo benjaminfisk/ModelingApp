@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
     height: 514,
 
     backgroundColor: colors.accent,
-    borderWidth: 2,
-    borderColor: colors.primary,
+    // borderWidth: 2,
+    // borderColor: colors.primary,
     borderRadius: 16,
 
     // marginLeft: 'auto',
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   }
 
 }

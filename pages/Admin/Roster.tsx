@@ -98,7 +98,7 @@ const Roster: React.FC<Props> = (props) => {
       
 
       <Header title='ROSTER' />
-      <View style={[global_styles.container, (adding || editing) ? styles.modalOpen : undefined]}>
+      <View style={global_styles.container}>
         <View style={styles.editSaveRow}>
           <CometSmallButton variant='dark' onPress={() => setAddButtonVisible((prev) => !prev)}>
             {addButtonVisible ? "SAVE CHANGES" : "EDIT ROSTER"}
@@ -198,10 +198,6 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
   },
-  modalOpen: {
-    opacity: 0.2,
-    backgroundColor: colors.darkerGray,
-  }
 })
 
 export default Roster

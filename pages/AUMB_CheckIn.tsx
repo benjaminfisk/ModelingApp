@@ -15,11 +15,11 @@ const AUMB_CheckIn: React.FC<Props> = (props) => {
   const [failure, setFailure] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   return (
-    <View style={global_styles.container}>
-      <Modal visible={failure} animationType="slide">
+    <View>
+      <Modal visible={failure} animationType="fade" transparent={true}>
         <InfoModal title="UH OH..." content="Something went wrong. Please try again." onCancel={() => setFailure(false)} />
       </Modal>
-      <Modal visible={success} animationType="slide">
+      <Modal visible={success} animationType="fade" transparent={true}>
         <InfoModal title="SUCCESS!" content="You have been checked in." onCancel={() => setSuccess(false)} />
       </Modal>
       <View style={global_styles.container}>
@@ -37,9 +37,9 @@ const AUMB_CheckIn: React.FC<Props> = (props) => {
           <View style={{height: 16}} />
           <CometButton onPress={() => setFailure(true)} >CHECK-IN (Failure)</CometButton>
         </View>
-        {/* <TouchableOpacity style={styles.checkInBtn} onPress={() => setFailure(true)}>
+        <View style={{marginTop: 8}}>
           <Text style={{fontWeight: '400', fontSize: 14, color: colors.primary}}>Make sure to check-in by 3:30 pm!</Text>
-        </TouchableOpacity> */}
+        </View>
       </View>
     </View>
   )
