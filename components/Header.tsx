@@ -57,7 +57,7 @@ const DrawerNavigator:React.FC<DrawerNavigatorProps> = ({onClose}) => {
                     <View style={drawerStyles.titleRow}>
                         <View style={drawerStyles.iconsRow}>
                             <Image source={accountIcon} style={drawerStyles.icon} />
-                            <Text style={{color: colors.black, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
+                            <Text style={{color: colors.accent, fontSize: 16, fontWeight: "500"}}>Firstname L.</Text>
                             <TouchableOpacity onPress={onClose}>
                                 <Image source={closeIcon} style={drawerStyles.icon} />
                             </TouchableOpacity>
@@ -117,8 +117,8 @@ const styles = StyleSheet.create({
 const drawerStyles = StyleSheet.create({
     drawerBG: {
         backgroundColor: colors.primary,
-        width: '50%',
-        height: 818,
+        width: '60%',
+        height: 1500,
         position: 'absolute',
         top: 0,
         right: 0,
@@ -129,7 +129,7 @@ const drawerStyles = StyleSheet.create({
         height: 32,
     },
     titleRow: {
-        backgroundColor: colors.secondary,
+        backgroundColor: colors.primary,
         display: 'flex',
         justifyContent: 'flex-end',
         height: 111,
