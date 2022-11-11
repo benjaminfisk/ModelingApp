@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Provider } from 'react-redux';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -19,6 +20,7 @@ import Manual_Check_In from './pages/Admin/Manual_Check-In';
 import Edit_Practice_Location from './pages/Admin/Edit_Practice_Location';
 import { global_styles, colors } from './assets/styles';
 import Attendance_Stats from './pages/Admin/Attendance_Stats';
+import store from './redux/store';
 
 
 export default function App() {
@@ -87,31 +89,33 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <SafeAreaView style={styles.header} />
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Sign In"
-          component={Sign_In}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Admin Area"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Check In"
-          component={AUMB_CheckIn}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Attendance Stats"
-          component={Attendance_Stats}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <SafeAreaView style={styles.header} />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Sign In"
+            component={Sign_In}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Admin Area"
+            component={TabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Check In"
+            component={AUMB_CheckIn}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Attendance Stats"
+            component={Attendance_Stats}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 const styles = StyleSheet.create({
