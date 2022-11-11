@@ -1,13 +1,15 @@
 import React from 'react'
 import { View, Text, StyleSheet, StyleProp, TouchableOpacity, Modal, Image, SafeAreaView, Pressable, TouchableWithoutFeedback } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
-import { students, StudentType } from '../../assets/studentRoster'
+import { StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
 import CometSmallButton from '../../components/CometSmallButton'
-import FormModal from '../../components/FormModal'
+import FormModal, {FormData} from '../../components/FormModal'
 import ChoiceModal from '../../components/ChoiceModal'
 import deleteBin from '../../assets/deleteBin.png'
 import editPencil from '../../assets/editPencil.png'
+import { useAppSelector, useAppDispatch } from '../../redux/hooks'
+import { removeStudent, addStudent, updateStudent } from '../../redux/studentSlice'
 
 type ItemProps = {
   data: StudentType
@@ -42,14 +44,25 @@ type Props = {
   navigation: any
 }
 
-const Roster: React.FC<Props> = (props) => {
-  const { navigation } = props;
+const Roster: React.FC<Props> = ({navigation}) => {
   const [addButtonVisible, setAddButtonVisible] = React.useState(false);
   const [adding, setAdding] = React.useState(false);
   const [editing, setEditing] = React.useState(false);
   const [deleting, setDeleting] = React.useState(false);
+  const [selectedStudent, setSelectedStudent] = React.useState<StudentType | undefined>(undefined);
 
-  const data = students;
+  const data = useAppSelector(state => state.students.students);
+  const dispatch = useAppDispatch();
+
+  const FormToStudent = (data: FormData) => {
+    const student: StudentType = {
+      id: data.studentID,
+      name: data.name,
+      section: data.section
+    }
+    return student;
+  }
+
   return (
     <View>
       {/* Adding Student Modal */}
@@ -62,7 +75,9 @@ const Roster: React.FC<Props> = (props) => {
           <FormModal title='ADD STUDENT'
             onSubmit={(data) => {
               setAdding(false)
-              console.log(data)
+              const student = FormToStudent(data)
+              dispatch(addStudent(student))
+              console.log("Added Student: ", student)
             }}
             onCancel={() => setAdding(false)}
             />
@@ -75,9 +90,14 @@ const Roster: React.FC<Props> = (props) => {
         transparent={true}
       >
         <FormModal title='EDIT STUDENT'
+          initialName={selectedStudent?.name}
+          initialSection={selectedStudent?.section}
+          initialStudentID={selectedStudent?.id}
           onSubmit={(data) => {
             setEditing(false)
-            console.log(data)
+            const student = FormToStudent(data)
+            dispatch(updateStudent(student))
+            console.log("Edited Student: ", student)
           }}
           onCancel={() => setEditing(false)}
         />
@@ -90,9 +110,15 @@ const Roster: React.FC<Props> = (props) => {
         transparent={true}
       >
         <ChoiceModal title='REMOVE STUDENT' 
-          content='Are you sure you want to delete this student?'
-          onYes={() => { setDeleting(false); console.log('delete student')}}
-          onNo={() => { setDeleting(false); console.log('cancel delete')}}
+          content={'Are you sure you want to delete ' + selectedStudent?.name + ' (' + selectedStudent?.id + ')?'}
+          onYes={() => { 
+            setDeleting(false)
+            console.log('Delete student ', selectedStudent)
+            if (selectedStudent) {
+              dispatch(removeStudent(selectedStudent.id))
+            }
+          }}
+          onNo={() => { setDeleting(false); console.log('Cancel delete on ', selectedStudent?.name)}}
         />
       </Modal>
       
@@ -109,12 +135,25 @@ const Roster: React.FC<Props> = (props) => {
           <Text style={global_styles.pageTitle}>ROSTER</Text>
         </View>
         <View style={styles.listView}>
-          <Item data={{name: "Name", section: "Section", status: "Status", time: "Time"}} 
+          <Item data={{id: '0', name: "Name", section: "Section", status: "Status", time: "Time"}} 
             textStyle={styles.titleText} 
             viewStyle={styles.titleRow} 
           />
-          {data.map((item, index) => (
-            <Item data={item} key={index} showButtons={addButtonVisible} editClick={() => setEditing(true)} deleteClick={() => setDeleting(true)}/>
+          {data.map((item) => (
+            <Item data={item} key={item.id} 
+            showButtons={addButtonVisible} 
+            editClick={
+              () => {
+                setEditing(true)
+                setSelectedStudent(item)
+              }
+            } 
+            deleteClick={
+              () => {
+                setDeleting(true)
+                setSelectedStudent(item)
+              }
+            }/>
           ))}
         </View>
         <TouchableOpacity style={styles.loadMoreButton}>

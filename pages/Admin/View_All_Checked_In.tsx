@@ -1,16 +1,16 @@
 import React from 'react'
 import { View, Text, StyleSheet, StyleProp, TouchableOpacity } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
-import { students, StudentType } from '../../assets/studentRoster'
+import { StudentType } from '../../assets/studentRoster'
+import { useAppSelector } from '../../redux/hooks'
+
 import Header from '../../components/Header'
 
 type Props = {
   navigation: any
 }
 
-const View_All_Checked_In: React.FC<Props> = (props) => {
-  const { navigation } = props;
-
+const View_All_Checked_In: React.FC<Props> = ({navigation}) => {
 
   type ItemProps = {
     data: StudentType
@@ -30,7 +30,9 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
     )
   }
 
-  const data = students.filter((student) => student.status === 'Checked In');
+  const data = useAppSelector(state => 
+    state.students.students.filter((student) => student.status === 'Checked In')
+  );
   
   return (
     <View style={global_styles.container}>
@@ -39,12 +41,12 @@ const View_All_Checked_In: React.FC<Props> = (props) => {
         <Text style={global_styles.pageTitle}>CHECKED-IN STUDENTS</Text>
       </View>
       <View style={styles.listView}>
-        <Item data={{name: "Name", section: "Section", status: "Status", time: "Time"}} 
+        <Item data={{id: '0', name: "Name", section: "Section", status: "Status", time: "Time"}} 
           textStyle={styles.titleText} 
           viewStyle={styles.titleRow} 
         />
-        {data.map((item, index) => (
-          <Item data={item} key={index} />
+        {data.map((item) => (
+          <Item data={item} key={item.id} />
         ))}
       </View>
       <TouchableOpacity style={styles.loadMoreButton}>

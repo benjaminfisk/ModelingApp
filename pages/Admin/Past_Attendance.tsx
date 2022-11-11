@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, Text, StyleSheet, StyleProp, TouchableOpacity } from 'react-native'
 import { colors, global_styles } from '../../assets/styles'
-import { students, StudentType } from '../../assets/studentRoster'
+import { StudentType } from '../../assets/studentRoster'
 import Header from '../../components/Header'
+import { useAppSelector } from '../../redux/hooks'
 type Props = {
   navigation: any
   route: any
@@ -30,7 +31,7 @@ const Past_Attendance: React.FC<Props> = (props) => {
     )
   }
 
-  const data = students.filter((student) => student.status === 'Checked In');
+  const data = useAppSelector(state => state.students.students);
   
   return (
     <View style={global_styles.container}>
@@ -39,12 +40,12 @@ const Past_Attendance: React.FC<Props> = (props) => {
         <Text style={global_styles.pageTitle}>SELECT STUDENT</Text>
       </View>
       <View style={styles.listView}>
-        <Item data={{name: "Name", section: "Section", status: "Stats"}} 
+        <Item data={{id: '0', name: "Name", section: "Section", status: "Stats"}} 
           textStyle={styles.titleText} 
           viewStyle={styles.titleRow} 
         />
-        {data.map((item, index) => (
-          <Item data={{...item, status: undefined}} key={index} onPress={(name) => {navigation.navigate('Attendance Stats', {name: name})}}/>
+        {data.map((item) => (
+          <Item data={{...item, status: undefined}} key={item.id} onPress={(name) => {navigation.navigate('Attendance Stats', {name: name})}}/>
         ))}
       </View>
       <TouchableOpacity style={styles.loadMoreButton}>

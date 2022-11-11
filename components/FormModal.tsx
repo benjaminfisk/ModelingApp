@@ -11,13 +11,16 @@ type FormData = {
 }
 type Props = {
     title: string;
+    initialName?: string;
+    initialStudentID?: string;
+    initialSection?: string;
     onSubmit: (data: FormData) => void;
     onCancel: () => void;
 }
-const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
-    const [name, setName] = useState<string>('')
-    const [studentID, setStudentID] = useState<string>('')
-    const [section, setSection] = useState<string>('')
+const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title, initialName, initialSection, initialStudentID}) => {
+    const [name, setName] = useState<string>(initialName || "");
+    const [studentID, setStudentID] = useState<string>(initialStudentID || "");
+    const [section, setSection] = useState<string>(initialSection || "");
 
     const handleSubmit = () => {
         onSubmit({
@@ -36,11 +39,11 @@ const FormModal: React.FC<Props> = ({ onSubmit, onCancel, title }) => {
                     <Text style={[global_styles.pageTitle, styles.title]}>{title}</Text>
 
                     <View style={styles.inputs}>
-                        <CometInput label='Name' onChangeText={setName}/>
+                        <CometInput label='Name' onChangeText={setName} value={name}/>
                         <View style={styles.spacer}/>
-                        <CometInput label='Student ID' onChangeText={setStudentID}/>
+                        <CometInput label='Student ID' onChangeText={setStudentID} value={studentID}/>
                         <View style={styles.spacer}/>
-                        <CometInput label='Section' onChangeText={setSection}/>
+                        <CometInput label='Section' onChangeText={setSection} value={section}/>
                     </View>
                     
                     <View style={styles.button}>
@@ -102,3 +105,4 @@ const styles = StyleSheet.create({
 )
 
 export default FormModal
+export type {FormData}
